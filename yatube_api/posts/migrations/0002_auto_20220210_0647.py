@@ -14,19 +14,40 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Group',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(help_text='Группа, к которой будет относиться пост', max_length=200, verbose_name='Название группы')),
-                ('slug', models.SlugField(help_text='Слаг, по которому можно найти группу', max_length=100, unique=True, verbose_name='Слаг')),
-                ('description', models.TextField(help_text='Тематика группы', verbose_name='Описание группы')),
+                ('id', models.AutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('title',
+                 models.CharField(help_text='Группа, к которой будет относиться пост',
+                                  max_length=200,
+                                  verbose_name='Название группы')),
+                ('slug',
+                 models.SlugField(help_text='Слаг, по которому можно найти группу',
+                                  max_length=100,
+                                  unique=True,
+                                  verbose_name='Слаг')),
+                ('description', models.TextField(
+                    help_text='Тематика группы', verbose_name='Описание группы')),
             ],
         ),
         migrations.AlterModelOptions(
             name='comment',
-            options={'ordering': ('-created',), 'verbose_name': 'Комментарий', 'verbose_name_plural': 'Комментарии'},
+            options={
+                'ordering': (
+                    '-created',
+                ),
+                'verbose_name': 'Комментарий',
+                'verbose_name_plural': 'Комментарии'},
         ),
         migrations.AddField(
             model_name='post',
             name='group',
-            field=models.ForeignKey(blank=True, help_text='Группа, к которой будет относиться пост', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='posts', to='posts.Group', verbose_name='Группа'),
+            field=models.ForeignKey(
+                blank=True,
+                help_text='Группа, к которой будет относиться пост',
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name='posts',
+                to='posts.Group',
+                verbose_name='Группа'),
         ),
     ]

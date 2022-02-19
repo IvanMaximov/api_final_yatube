@@ -28,7 +28,8 @@ class TestGroupAPI:
         )
 
     @pytest.mark.django_db(transaction=True)
-    def test_group_get(self, user_client, post, another_post, group_1, group_2):
+    def test_group_get(self, user_client, post,
+                       another_post, group_1, group_2):
         response = user_client.get('/api/v1/groups/')
         assert response.status_code == 200, (
             'Проверьте, что при GET запросе `/api/v1/groups/` с токеном авторизации возвращается статус 200'
@@ -36,7 +37,7 @@ class TestGroupAPI:
 
         test_data = response.json()
 
-        assert type(test_data) == list, (
+        assert isinstance(test_data, list), (
             'Проверьте, что при GET запросе на `/api/v1/groups/` возвращается список'
         )
 
@@ -76,7 +77,8 @@ class TestGroupAPI:
         )
 
     @pytest.mark.django_db(transaction=True)
-    def test_group_get(self, user_client, post, post_2, another_post, group_1, group_2):
+    def test_group_get(self, user_client, post, post_2,
+                       another_post, group_1, group_2):
         response = user_client.get('/api/v1/groups/')
         assert response.status_code == 200, (
             'Страница `/api/v1/groups/` не найдена, проверьте этот адрес в *urls.py*'
